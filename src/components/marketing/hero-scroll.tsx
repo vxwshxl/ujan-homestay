@@ -209,7 +209,8 @@ export function HeroScroll() {
 
           <p className="mt-6 max-w-xl text-base leading-relaxed text-balance text-muted-foreground sm:mt-8 sm:text-lg">
             Ujan is a private, family-run homestay opposite Hatigaon Police
-            Station — clean AC rooms, high-speed Wi-Fi, easy parking and a
+            Station — clean AC rooms, high-speed{" "}
+            <span className="whitespace-nowrap">Wi-Fi</span>, easy parking and a
             kitchen, from {formatINR(PRICE_FROM)} a night.
           </p>
 

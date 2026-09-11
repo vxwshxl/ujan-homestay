@@ -84,7 +84,9 @@ export const NAV = [
   { id: "rooms", label: "Rooms", sections: ["rooms"] },
   { id: "rates", label: "Rates", sections: ["rates"] },
   { id: "location", label: "Location", sections: ["location"] },
-  { id: "faq", label: "FAQ", sections: ["faq", "contact"] },
+  // Not the footer (#contact): while it is pinned behind the page it spans the
+  // viewport at every scroll position, and would light "FAQ" from the top.
+  { id: "faq", label: "FAQ", sections: ["faq"] },
 ] as const;
 
 /** The claims Ujan makes about itself, used by the page and the structured data. */

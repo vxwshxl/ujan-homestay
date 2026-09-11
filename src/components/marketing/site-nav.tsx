@@ -200,7 +200,9 @@ export function SiteNav() {
             className="press relative inline-flex h-10 items-center gap-2 rounded-full bg-primary px-4 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90 after:absolute after:inset-x-0 after:-inset-y-0.5 after:content-['']"
           >
             <WhatsAppIcon className="size-4" />
-            Book<span className="max-xl:hidden"> on WhatsApp</span>
+            <span>
+              Book<span className="max-xl:hidden"> on WhatsApp</span>
+            </span>
           </a>
         </div>
       </div>
