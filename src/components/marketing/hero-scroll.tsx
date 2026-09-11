@@ -320,7 +320,7 @@ function ArchWindow() {
         <div aria-hidden className="absolute inset-0 bg-linear-to-b from-scrim/30 to-transparent to-25%" />
       </div>
       {/* The sill. */}
-      <div aria-hidden className="absolute -bottom-3 left-1/2 h-4 w-[112%] -translate-x-1/2 rounded-full bg-elevated shadow-e2 ring-1 ring-border" />
+      <div aria-hidden className="absolute -bottom-3 left-1/2 h-4 w-[106%] -translate-x-1/2 rounded-full bg-elevated shadow-e2 ring-1 ring-border sm:w-[112%]" />
     </div>
   );
 }

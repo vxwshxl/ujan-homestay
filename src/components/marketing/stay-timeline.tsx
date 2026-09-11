@@ -95,15 +95,23 @@ export function StayTimeline() {
 
       // Reduced motion keeps a working walkthrough — the steps are buttons —
       // it just does not track the scroll.
-      mm.add("(prefers-reduced-motion: no-preference)", () => {
+      mm.add(
+        {
+          isDesktop: "(min-width: 1024px) and (prefers-reduced-motion: no-preference)",
+          isCompact: "(max-width: 1023px) and (prefers-reduced-motion: no-preference)",
+        },
+        (ctx) => {
+        const { isDesktop } = ctx.conditions as Record<string, boolean>;
         const triggers = gsap.utils.toArray<HTMLElement>("[data-step]").map((el, i) =>
           ScrollTrigger.create({
             trigger: el,
-            // 65%–35% of the viewport is roughly where the eye sits while
-            // reading; switching earlier changes the phone a beat before you
-            // reach the words that explain it.
-            start: "top 65%",
-            end: "bottom 35%",
+            // Desktop: 65%–35% of the viewport is roughly where the eye sits
+            // while reading, so the phone changes as you reach the words that
+            // explain it. Below lg the sticky phone covers the top half of the
+            // screen and you read underneath it, so the band moves down to
+            // the part you can actually see.
+            start: isDesktop ? "top 65%" : "top 80%",
+            end: isDesktop ? "bottom 35%" : "bottom 55%",
             onToggle: ({ isActive }) => {
               if (isActive) select(i);
             },
@@ -184,7 +192,10 @@ export function StayTimeline() {
         <span
           ref={progress}
           aria-hidden
-          className="absolute top-2 bottom-2 left-4 w-px origin-top -translate-x-1/2 scale-y-0 bg-primary"
+          // The resting scale is written as `transform`, the property GSAP
+          // drives. Tailwind's `scale-y-0` sets the separate `scale` property,
+          // which would multiply with GSAP's value and pin the line at zero.
+          className="absolute top-2 bottom-2 left-4 w-px origin-top -translate-x-1/2 bg-primary [transform:scaleY(0)]"
         />
 
         {STEPS.map((step, i) => {
