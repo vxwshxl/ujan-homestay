@@ -1,0 +1,313 @@
+/* ---------------------------------------------------------------------------
+ * Design tokens — Ujan Homestay
+ * Derived from standards/tokens.css (Tailwind v4 + next-themes + shadcn bridge).
+ *
+ * Brand drift from the standard file, on purpose (see TECH_STACK ADR-010):
+ *   - The neutral primitives are re-tinted warm (ivory / ink) for light mode and
+ *     night-navy for dark mode, taken from Ujan's own night-time banner. The
+ *     semantic tier (--ds-*) and the shadcn bridge are unchanged, so nothing
+ *     downstream knows the difference.
+ *   - Accent is the forest green of the Ujan logo; "warm" is the amber of the
+ *     lit windows in the same banner.
+ *   - Marketing-only tokens (hero glow, device bezel, WhatsApp, night footer)
+ *     live here too, because this is the only file allowed to hold a hex.
+ * ------------------------------------------------------------------------- */
+
+@import "tailwindcss";
+
+/* next-themes writes class="dark" on <html>. */
+@custom-variant dark (&:is(.dark *));
+
+/* ===========================================================================
+ * TIER 1 — PRIMITIVES (do not use outside this file)
+ * ========================================================================= */
+:root {
+  /* Warm neutrals — light */
+  --ivory-0:   #FFFDF9;
+  --ivory-50:  #FBF8F3;
+  --ivory-100: #F5F0E7;
+  --ivory-200: #EDE6DA;
+  --ivory-300: #E4DBCC;
+  --ivory-400: #D5C9B6;
+  --ink-900:   #1D2620;
+  --ink-600:   #545D55;
+  --ink-400:   #878D84;
+
+  /* Night neutrals — dark */
+  --night-950: #0A1016;
+  --night-925: #0E151C;
+  --night-900: #1B2631;
+  --night-850: #141D26;
+  --night-800: #212C37;
+  --night-700: #2E3B48;
+  --cream-100: #EFE9DF;
+  --cream-400: #A7ADA6;
+  --cream-600: #6E766F;
+
+  /* BRAND */
+  --forest-700: #2E5B45;   /* accent, light */
+  --forest-300: #8CC6A2;   /* accent, dark  */
+  --forest-50:  #E5EEE6;   /* accent wash, light */
+  --forest-950: #12241B;   /* accent wash, dark  */
+  --amber-700:  #A8500C;   /* window light, light mode (5.2:1 on ivory) */
+  --amber-300:  #F2A75E;   /* window light, dark mode */
+
+  --green-700: #0F7B47;
+  --green-400: #3ECF8E;
+  --warn-700:  #A35C00;
+  --warn-400:  #F5A524;
+  --red-600:   #C0362C;
+  --red-400:   #FF6B60;
+
+  /* Third-party brand colours, used only where the brand must be recognised. */
+  --whatsapp-700: #0B7A6E;  /* 5.2:1 with white text */
+  --whatsapp-800: #09685E;
+}
+
+/* ===========================================================================
+ * TIER 2 — SEMANTIC (light)
+ * ========================================================================= */
+:root {
+  color-scheme: light;
+
+  --ds-bg:             var(--ivory-50);
+  --ds-bg-subtle:      var(--ivory-100);
+  --ds-bg-muted:       var(--ivory-200);
+  --ds-bg-elevated:    var(--ivory-0);
+
+  --ds-fg:             var(--ink-900);
+  --ds-fg-secondary:   var(--ink-600);
+  --ds-fg-muted:       var(--ink-400);
+
+  --ds-border:         var(--ivory-300);
+  --ds-border-strong:  var(--ivory-400);
+
+  --ds-accent:         var(--forest-700);
+  --ds-accent-fg:      var(--ivory-50);
+  --ds-accent-subtle:  var(--forest-50);
+  --ds-warm:           var(--amber-700);
+
+  --ds-success:        var(--green-700);
+  --ds-warning:        var(--warn-700);
+  --ds-danger:         var(--red-600);
+  --ds-danger-fg:      var(--ivory-0);
+
+  --ds-focus-ring:     var(--forest-700);
+
+  --ds-elevation-0: 0 0 0 1px rgb(29 38 32 / 0.07);
+  --ds-elevation-1: 0 0 0 1px rgb(29 38 32 / 0.07), 0 1px 2px rgb(29 38 32 / 0.06);
+  --ds-elevation-2: 0 0 0 1px rgb(29 38 32 / 0.07), 0 4px 12px rgb(29 38 32 / 0.08);
+  --ds-elevation-3: 0 0 0 1px rgb(29 38 32 / 0.09), 0 12px 32px rgb(29 38 32 / 0.12);
+
+  /* Marketing surface */
+  --ds-hero-grid:      rgb(29 38 32 / 0.05);
+  --ds-hero-glow:      rgb(242 167 94 / 0.24);
+  --ds-hero-glow-soft: rgb(46 91 69 / 0.08);
+  --ds-hero-halo:      rgb(168 80 12 / 0.28);
+  --ds-panel-shadow:   0 32px 80px -24px rgb(29 38 32 / 0.3), 0 4px 16px -4px rgb(29 38 32 / 0.1);
+  --ds-scrim:          rgb(10 16 22 / 0.78);
+
+  /* A device is hardware: its bezel does not flip with the theme. */
+  --ds-bezel:          #171C21;
+  --ds-bezel-edge:     #2C333A;
+
+  /* The footer card is night-time in both themes, like the banner it echoes. */
+  --ds-night:          #0F1720;
+  --ds-night-fg:       var(--cream-100);
+  --ds-night-muted:    #9AA39B;
+  --ds-night-border:   #25313C;
+  --ds-night-accent:   var(--amber-300);
+
+  --ds-whatsapp:       var(--whatsapp-700);
+  --ds-whatsapp-hover: var(--whatsapp-800);
+  --ds-whatsapp-fg:    #FFFFFF;
+
+  /* Chat mock (booking walkthrough) */
+  --ds-chat-wall:      #EFE7DD;
+  --ds-chat-out:       #D9FDD3;
+  --ds-chat-in:        #FFFFFF;
+}
+
+/* ===========================================================================
+ * TIER 2 — SEMANTIC (dark) — "night at Ujan"
+ * Elevation is expressed by lighter surfaces, not shadows.
+ * ========================================================================= */
+.dark {
+  color-scheme: dark;
+
+  --ds-bg:             var(--night-950);
+  --ds-bg-subtle:      var(--night-925);
+  --ds-bg-muted:       var(--night-900);
+  --ds-bg-elevated:    var(--night-850);
+
+  --ds-fg:             var(--cream-100);
+  --ds-fg-secondary:   var(--cream-400);
+  --ds-fg-muted:       var(--cream-600);
+
+  --ds-border:         var(--night-800);
+  --ds-border-strong:  var(--night-700);
+
+  --ds-accent:         var(--forest-300);
+  --ds-accent-fg:      var(--night-950);
+  --ds-accent-subtle:  var(--forest-950);
+  --ds-warm:           var(--amber-300);
+
+  --ds-success:        var(--green-400);
+  --ds-warning:        var(--warn-400);
+  --ds-danger:         var(--red-400);
+  --ds-danger-fg:      var(--night-950);
+
+  --ds-focus-ring:     var(--forest-300);
+
+  --ds-elevation-0: 0 0 0 1px var(--night-800);
+  --ds-elevation-1: 0 0 0 1px var(--night-800), 0 1px 2px rgb(0 0 0 / 0.4);
+  --ds-elevation-2: 0 0 0 1px var(--night-800), 0 4px 12px rgb(0 0 0 / 0.5);
+  --ds-elevation-3: 0 0 0 1px var(--night-700), 0 12px 32px rgb(0 0 0 / 0.6);
+
+  --ds-hero-grid:      rgb(239 233 223 / 0.05);
+  --ds-hero-glow:      rgb(242 167 94 / 0.16);
+  --ds-hero-glow-soft: rgb(140 198 162 / 0.07);
+  --ds-hero-halo:      rgb(242 167 94 / 0.42);
+  --ds-panel-shadow:   0 32px 80px -24px rgb(0 0 0 / 0.72), 0 4px 16px -4px rgb(0 0 0 / 0.5);
+
+  --ds-night:          #111A23;
+  --ds-night-border:   #243039;
+
+  --ds-chat-wall:      #0B141A;
+  --ds-chat-out:       #144D37;
+  --ds-chat-in:        #1F2C33;
+}
+
+/* ===========================================================================
+ * TIER 3 — shadcn/ui bridge
+ * ========================================================================= */
+:root, .dark {
+  --background:            var(--ds-bg);
+  --foreground:            var(--ds-fg);
+  --card:                  var(--ds-bg-elevated);
+  --card-foreground:       var(--ds-fg);
+  --popover:               var(--ds-bg-elevated);
+  --popover-foreground:    var(--ds-fg);
+  --primary:               var(--ds-accent);
+  --primary-foreground:    var(--ds-accent-fg);
+  --secondary:             var(--ds-bg-muted);
+  --secondary-foreground:  var(--ds-fg);
+  --muted:                 var(--ds-bg-muted);
+  --muted-foreground:      var(--ds-fg-secondary);
+  --accent:                var(--ds-bg-muted);
+  --accent-foreground:     var(--ds-fg);
+  --destructive:           var(--ds-danger);
+  --destructive-foreground:var(--ds-danger-fg);
+  --border:                var(--ds-border);
+  --input:                 var(--ds-border-strong);
+  --ring:                  var(--ds-focus-ring);
+  --radius:                0.625rem;
+}
+
+/* ===========================================================================
+ * TAILWIND THEME
+ * ========================================================================= */
+@theme inline {
+  --color-background:           var(--background);
+  --color-foreground:           var(--foreground);
+  --color-card:                 var(--card);
+  --color-card-foreground:      var(--card-foreground);
+  --color-popover:              var(--popover);
+  --color-popover-foreground:   var(--popover-foreground);
+  --color-primary:              var(--primary);
+  --color-primary-foreground:   var(--primary-foreground);
+  --color-secondary:            var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted:                var(--muted);
+  --color-muted-foreground:     var(--muted-foreground);
+  --color-accent:               var(--accent);
+  --color-accent-foreground:    var(--accent-foreground);
+  --color-destructive:          var(--destructive);
+  --color-border:               var(--border);
+  --color-input:                var(--input);
+  --color-ring:                 var(--ring);
+
+  --color-subtle:               var(--ds-bg-subtle);
+  --color-elevated:             var(--ds-bg-elevated);
+  --color-secondary-fg:         var(--ds-fg-secondary);
+  --color-faint:                var(--ds-fg-muted);
+  --color-accent-subtle:        var(--ds-accent-subtle);
+  --color-warm:                 var(--ds-warm);
+  --color-success:              var(--ds-success);
+  --color-warning:              var(--ds-warning);
+  --color-danger:               var(--ds-danger);
+  --color-border-strong:        var(--ds-border-strong);
+
+  --color-night:                var(--ds-night);
+  --color-night-fg:             var(--ds-night-fg);
+  --color-night-muted:          var(--ds-night-muted);
+  --color-night-border:         var(--ds-night-border);
+  --color-night-accent:         var(--ds-night-accent);
+  --color-whatsapp:             var(--ds-whatsapp);
+  --color-whatsapp-hover:       var(--ds-whatsapp-hover);
+  --color-whatsapp-fg:          var(--ds-whatsapp-fg);
+  --color-chat-wall:            var(--ds-chat-wall);
+  --color-chat-out:             var(--ds-chat-out);
+  --color-chat-in:              var(--ds-chat-in);
+  --color-bezel:                var(--ds-bezel);
+  --color-bezel-edge:           var(--ds-bezel-edge);
+  --color-scrim:                var(--ds-scrim);
+
+  /* Display is a soft serif, echoing the serif UJAN wordmark on the logo. */
+  --font-display: var(--font-display), ui-serif, Georgia, serif;
+  --font-sans:    var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 10px;
+  --radius-xl: 16px;
+  --radius-2xl: 24px;          /* marketing cards */
+  --radius-phone: 44px;        /* device bezel */
+  --radius-screen: 36px;       /* bezel − 8px padding */
+
+  --shadow-e0: var(--ds-elevation-0);
+  --shadow-e1: var(--ds-elevation-1);
+  --shadow-e2: var(--ds-elevation-2);
+  --shadow-e3: var(--ds-elevation-3);
+  --shadow-panel: var(--ds-panel-shadow);
+
+  --ease-quick: cubic-bezier(0.2, 0, 0, 1);
+  --ease-soft:  cubic-bezier(0.05, 0.7, 0.1, 1);
+  /* Marketing: enter/exit and on-screen movement. */
+  --ease-out-strong:    cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out-strong: cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+/* ===========================================================================
+ * BASE
+ * ========================================================================= */
+@layer base {
+  * {
+    border-color: var(--ds-border);
+  }
+
+  body {
+    background-color: var(--ds-bg);
+    color: var(--ds-fg);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--ds-focus-ring);
+    outline-offset: 2px;
+  }
+
+  h1 { letter-spacing: -0.025em; }
+  h2 { letter-spacing: -0.020em; }
+  h3 { letter-spacing: -0.015em; }
+  h4 { letter-spacing: -0.010em; }
+
+  table, .tabular { font-variant-numeric: tabular-nums; }
+
+  ::selection {
+    background-color: var(--ds-accent);
+    color: var(--ds-accent-fg);
+  }
+}

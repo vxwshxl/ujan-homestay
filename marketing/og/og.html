@@ -1,0 +1,150 @@
+<!doctype html>
+<!--
+  Source for src/app/opengraph-image.png and twitter-image.png — the 1200x630
+  link-preview banner. Regenerate with: bash marketing/render.sh
+
+  Night-time on purpose, whatever theme the site is in: it is Ujan's own
+  banner palette, and it reads on both light and dark chat backgrounds.
+  Token values are lifted from src/styles/tokens.css (dark tier).
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;1,9..144,500&family=Geist:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0A1016;
+    --card: #141D26;
+    --fg: #EFE9DF;
+    --muted: #A7ADA6;
+    --border: rgba(239, 233, 223, 0.12);
+    --accent: #8CC6A2;
+    --warm: #F2A75E;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1200px; height: 630px; }
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: Geist, ui-sans-serif, system-ui, sans-serif;
+    position: relative;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 1fr 380px;
+    gap: 56px;
+    padding: 56px 72px 56px 72px;
+  }
+
+  .grid {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(to right, rgba(239,233,223,.045) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(239,233,223,.045) 1px, transparent 1px);
+    background-size: 64px 64px;
+    mask-image: radial-gradient(120% 100% at 20% 0%, #000 30%, transparent 78%);
+  }
+  .bloom {
+    position: absolute; width: 900px; height: 900px; right: -300px; top: -260px;
+    background: radial-gradient(circle, rgba(242,167,94,.26) 0%, transparent 60%);
+  }
+  .bloom-2 {
+    position: absolute; width: 640px; height: 640px; left: -260px; bottom: -380px;
+    background: radial-gradient(circle, rgba(140,198,162,.12) 0%, transparent 65%);
+  }
+
+  .left { position: relative; display: flex; flex-direction: column; justify-content: space-between; }
+  .row { display: flex; align-items: center; gap: 18px; }
+  .mark {
+    width: 72px; height: 72px; border-radius: 16px; object-fit: cover;
+    box-shadow: 0 14px 28px rgba(0,0,0,.5), 0 0 0 1px var(--border);
+  }
+  .wordmark { font-family: Fraunces, Georgia, serif; font-size: 34px; font-weight: 500; letter-spacing: -0.02em; }
+  .by { font-size: 17px; font-weight: 500; color: var(--muted); margin-top: 4px; }
+
+  .eyebrow {
+    font-size: 15px; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--warm); margin-bottom: 20px;
+  }
+  h1 {
+    font-family: Fraunces, Georgia, serif;
+    font-size: 64px; font-weight: 500; line-height: 1.04; letter-spacing: -0.03em;
+  }
+  h1 em { color: var(--accent); font-style: italic; position: relative; white-space: nowrap; }
+  h1 em::after {
+    content: ""; position: absolute; left: 0; right: 0; bottom: -8px; height: 5px; border-radius: 999px;
+    background: linear-gradient(90deg, var(--warm), rgba(242,167,94,.15));
+    box-shadow: 0 0 24px 2px rgba(242,167,94,.4);
+  }
+  .chips { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 32px; }
+  .chip {
+    font-size: 17px; font-weight: 500; background: var(--card);
+    border: 1px solid var(--border); border-radius: 999px; padding: 8px 16px;
+  }
+
+  .foot {
+    display: flex; align-items: center; justify-content: space-between;
+    border-top: 1px solid var(--border); padding-top: 20px;
+  }
+  .url { font-size: 20px; font-weight: 600; letter-spacing: -0.01em; }
+  .meta { font-size: 17px; font-weight: 500; color: var(--muted); }
+  .dot { color: var(--warm); margin: 0 8px; }
+
+  .window-wrap { position: relative; align-self: center; }
+  .glow {
+    position: absolute; inset: -80px;
+    background: radial-gradient(50% 45% at 50% 50%, rgba(242,167,94,.35), transparent 70%);
+  }
+  .window {
+    position: relative; width: 380px; height: 506px;
+    border-radius: 190px 190px 24px 24px; overflow: hidden;
+    border: 8px solid var(--card);
+    box-shadow: 0 40px 80px -24px rgba(0,0,0,.8), 0 0 0 1px var(--border);
+  }
+  .window img { width: 100%; height: 100%; object-fit: cover; object-position: left center; transform: scale(1.08); }
+  .sill {
+    position: absolute; left: -22px; right: -22px; bottom: -12px; height: 16px; border-radius: 999px;
+    background: var(--card); box-shadow: 0 0 0 1px var(--border), 0 12px 24px rgba(0,0,0,.5);
+  }
+</style>
+</head>
+<body>
+  <div class="grid"></div>
+  <div class="bloom"></div>
+  <div class="bloom-2"></div>
+
+  <div class="left">
+    <div class="row">
+      <img class="mark" src="../../public/images/ujan-profile.jpg" alt="">
+      <div>
+        <div class="wordmark">Ujan Homestay</div>
+        <div class="by">Hatigaon · Guwahati · Assam</div>
+      </div>
+    </div>
+
+    <div>
+      <div class="eyebrow">Homestay in Guwahati</div>
+      <h1>Your home in Guwahati,<br><em>away from home.</em></h1>
+      <div class="chips">
+        <span class="chip">AC rooms</span>
+        <span class="chip">Wi-Fi</span>
+        <span class="chip">Parking</span>
+        <span class="chip">Kitchen</span>
+        <span class="chip">Couple &amp; family friendly</span>
+      </div>
+    </div>
+
+    <div class="foot">
+      <div class="url">ujan-homestay.vercel.app</div>
+      <div class="meta">From ₹1,500 / night<span class="dot">·</span>WhatsApp 98649 16371</div>
+    </div>
+  </div>
+
+  <div class="window-wrap">
+    <div class="glow"></div>
+    <div class="window"><img src="../../public/images/ujan-house.jpg" alt=""></div>
+    <div class="sill"></div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,14 @@
+# Ujan Homestay
+
+> A private, family-run homestay in Hatigaon, Guwahati, Assam, India. Tagline: "Feel at home, away from home."
+
+- Address: House No. 38, Mother Teresa Path, Opposite Hatigaon Police Station, Hatigaon, Guwahati, Assam 781038
+- Rates: from ₹1,500 per night; the exact rate depends on dates and room and is confirmed on WhatsApp
+- Booking: WhatsApp +91 98649 16371 · Call +91 98649 16371 or +91 88766 33455
+- Amenities: air-conditioned rooms, high-speed Wi-Fi, easy parking, kitchen access, clean and hygienic rooms, no sharing with strangers
+- Suitable for: couples, families and business travellers
+- Instagram: https://www.instagram.com/ujanhomestay/
+
+## Pages
+
+- [Home](https://ujan-homestay.vercel.app/): rooms, amenities, rates, location, FAQ and booking
